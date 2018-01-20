@@ -25,24 +25,25 @@ See:
 
 Example:
 
-    stac@sicksadworld:~/development/colissimo>colissimo --lang en XXXXXXXXXXX
-    La Poste Colissimo - Colis : XXXXXXXXXXX
+    stac@sicksadworld:~/development/colissimo>colissimo XXXXXXXXXXXX
+    La Poste Colissimo - Colis : XXXXXXXXXXXX
 
-    | Date       | Description                                                                                          | Lieu                                   |
-    |------------|------------------------------------------------------------------------------------------------------|----------------------------------------|
-    | 01/18/2018 | Your parcel has been posted after the posting deadline. It will be shipped on the next working day.  | Post office Puymirol                   |
+    ┌────────────┬───────────────────────────────────────────────────────────────────┬────────────────────┐
+    │ Date       │ Description                                                       │ Lieu               │
+    ├────────────┼───────────────────────────────────────────────────────────────────┼────────────────────┤
+    │ 20/01/2018 │ Votre colis est en préparation pour la livraison.                 │ Centre Courrier 06 │
+    │ 19/01/2018 │ Votre colis est en cours d'acheminement.                          │ Plateforme Colis   │
+    │ 18/01/2018 │ Votre colis est en cours d'acheminement.                          │ Plateforme Colis   │
+    │ 17/01/2018 │ Votre colis est prêt à être expédié, il va être remis à La Poste. │ Plateforme Colis   │
+    └────────────┴───────────────────────────────────────────────────────────────────┴────────────────────┘
 
-    stac@sicksadworld:~/development/colissimo>colissimo --lang fr XXXXXXXXXXX
-    La Poste Colissimo - Colis : XXXXXXXXXXX
+    stac@sicksadworld:~/development/colissimo>colissimo XXXXXXXXXXXX
+    La Poste Colissimo - Colis : XXXXXXXXXXXX
 
-    | Date       | Description                                                                                          | Lieu                                   |
-    |------------|------------------------------------------------------------------------------------------------------|----------------------------------------|
-    | 18/01/2018 | Votre colis a été déposé après l'heure limite de dépôt. Il sera expédié dès le prochain jour ouvré.  | Bureau de Poste Puymirol               |
-
-    stac@sicksadworld:~/development/colissimo>colissimo --lang de XXXXXXXXXXX
-    La Poste Colissimo - Colis : XXXXXXXXXXX
-
-    | Date       | Description                                                                                          | Lieu                                   |
-    |------------|------------------------------------------------------------------------------------------------------|----------------------------------------|
-    | 18/01/2018 | Ihr Paket wurde nach Annahmeschluss aufgegeben. Es wird am folgenden Werktag abgeschickt.            | Postfiliale Puymirol                   |
+    ┌────────────┬───────────────────────────────────────────────────────────────────────────────────-─────────────────┬──────────────────────────┐
+    │ Date       │ Description                                                                                         │ Lieu                     │
+    ├────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────┤
+    │ 19/01/2018 │ Votre colis est en cours d'acheminement.                                                            │ Plateforme Colis         │
+    │ 18/01/2018 │ Votre colis a été déposé après l'heure limite de dépôt. Il sera expédié dès le prochain jour ouvré. │ Bureau de Poste Puymirol │
+    └────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────┘
 

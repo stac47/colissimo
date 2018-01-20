@@ -3,8 +3,8 @@ from collections import namedtuple
 
 import click
 import requests
-import colorama
-from colorama import Style
+from terminaltables import SingleTable
+from colorclass import Color
 
 
 SERVICE_URL =\
@@ -61,34 +61,22 @@ class LaPosteParser(HTMLParser):
             elif self.current_location is None:
                 self.current_location = str(data)
 
-DATE_LENGTH = 12
-REMARK_LENGTH = 102
-LOCATION_LENGTH = 40
-
-TEMPLATE = '|{3}{{:<{0}}}{4}|{3}{{:<{1}}}{4}|{3}{{:<{2}}}{4}|'
-HEADER_TEMPLATE = TEMPLATE.format(DATE_LENGTH, REMARK_LENGTH, LOCATION_LENGTH,
-                                  Style.BRIGHT, Style.NORMAL)
-ROW_TEMPLATE = TEMPLATE.format(DATE_LENGTH, REMARK_LENGTH, LOCATION_LENGTH, '', '')
-HORIZONTAL_LINE = ROW_TEMPLATE.format('-' * DATE_LENGTH,
-                                      '-' * REMARK_LENGTH,
-                                      '-' * LOCATION_LENGTH)
-
 
 @click.command()
 @click.option('--lang', default='fr', help='chosen language')
 @click.argument('code')
 def cli(lang, code):
-    colorama.init()
     r = requests.get(SERVICE_URL.format(lang, code),
         headers={'X-Requested-With': 'XMLHttpRequest'})
     parser = LaPosteParser()
     parser.feed(r.text)
     click.echo('La Poste Colissimo - Colis : {}'.format(code))
     click.echo()
-    click.echo(HEADER_TEMPLATE.format(' Date', ' Description', ' Lieu'))
-    click.echo(HORIZONTAL_LINE)
+    data = []
+    data.append(['Date', 'Description', 'Lieu'])
     for row in parser.rows:
-        click.echo(ROW_TEMPLATE.format(
-            ' ' + row.date,
-            ' ' + row.remark,
-            ' ' + row.location))
+        data.append([Color('{autogreen}' + row.date + '{/autogreen}'),
+                     row.remark,
+                     Color('{autocyan}' + row.location + '{/autocyan}')])
+    table = SingleTable(data)
+    click.echo(table.table)
