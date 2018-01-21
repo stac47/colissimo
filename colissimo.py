@@ -63,7 +63,9 @@ class LaPosteParser(HTMLParser):
 
 
 @click.command()
-@click.option('--lang', default='fr', help='chosen language')
+@click.option('--lang', default='fr',
+              type=click.Choice(['fr', 'en', 'es', 'de', 'nl', 'it']),
+              help='chosen language')
 @click.argument('code')
 def cli(lang, code):
     r = requests.get(SERVICE_URL.format(lang, code),
